@@ -1,5 +1,8 @@
 <template>
-  <div id="gnb">
+  <div
+    v-if="items"
+    id="gnb"
+  >
     <h3 class="gnb-title">Sample</h3>
     <div class="gnb-inner">
       <div
@@ -42,14 +45,27 @@
     <h3 class="gnb-title">API menu</h3>
     <div class="gnb-inner">
       <!-- your code goes from here -->
+      <gnb-item
+        v-for="(aItem, aIdx) in items"
+        :key="`menu-depth1-${aIdx}`"
+        :pItem="aItem"
+        :pDepth="1"
+      />
     </div>
+  </div>
+  <div v-else>
+    {{ sErrorStr }}
   </div>
 </template>
 <script>
 import 'scss/components/gnb.scss';
+import GnbItem from './GnbItem.vue'
 
 export default {
   name: 'Gnb',
+  components: {
+    GnbItem
+  },
   data() {
     return {
       sampleItems: [
@@ -76,8 +92,24 @@ export default {
           pathname: '/2'
         }
       ],
-      items: []
+      items: null,
+      sErrorStr: 'no data'
     };
+  },
+  methods: {
+    getMenuData() {
+      this.API.getGnb()
+      .then(res => {
+          this.items = res.data;
+      })
+      .catch(error => {
+          this.items = null;
+          console.log(error);
+      });
+    }
+  },
+  created() {
+    this.getMenuData();
   }
 };
 </script>
