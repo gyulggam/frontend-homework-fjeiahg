@@ -11,7 +11,11 @@ const state = {
 
 const getters = {};
 const actions = {};
-const mutations = {};
+const mutations = {
+    setNumOfColumns(state, aNum) {
+        state.box.numOfColumns = aNum;
+    }
+};
 
 export default {
   namespaced: true,

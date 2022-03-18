@@ -41,6 +41,7 @@
 
       .link::before {
         content: '\00B7';
+        color: $haezoom;
         position: relative;
         top: 3px;
         font-size: 24px;

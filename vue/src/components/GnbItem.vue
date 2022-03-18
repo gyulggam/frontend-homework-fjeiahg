@@ -35,7 +35,7 @@ export default {
   props: {
       pItem: {
           type: Object,
-          default: {},
+          require: true,
       },
       pDepth: {
           type: Number,
