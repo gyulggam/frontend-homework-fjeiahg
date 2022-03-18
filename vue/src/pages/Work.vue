@@ -17,7 +17,7 @@
       <div
         v-for="(item, idx) in box.items"
         :key="'box' + idx"
-        :style="`width:${cBoxWidth}%`"
+        :style="`width: calc(${cBoxWidth}% - 10px)`"
         class="box"
       >
         <p>{{ item.name }}</p>

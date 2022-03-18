@@ -47,6 +47,11 @@
         font-size: 24px;
         font-weight: bold;
       }
+
+      .router-link-exact-active {
+        color: $haezoom;
+        font-weight: 700;
+      }
     }
   }
 }
