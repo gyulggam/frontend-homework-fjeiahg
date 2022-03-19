@@ -13,11 +13,14 @@
         </button>
       </div>
     </div>
-    <div class="box-wrap">
+    <div 
+      :style="`gap: ${cBoxGap}%`"
+      class="box-wrap"
+    >
       <div
         v-for="(item, idx) in box.items"
         :key="'box' + idx"
-        :style="`width: calc(${cBoxWidth}% - 10px)`"
+        :style="`width: ${cBoxWidth}%`"
         class="box"
       >
         <p>{{ item.name }}</p>
@@ -40,15 +43,18 @@ export default {
   },
   data() {
       return {
-          sColumnList: [1, 2, 3 ,4]
+          sColumnList: [1, 2, 3 ,4],
       }
   },
   computed: {
     pagePathName() {
       return 'page path: ' + this.$route.path;
     },
+    cBoxGap() {
+      return this.box.numOfColumns === 1 ? 0 : 1;
+    },
     cBoxWidth() {
-        return 100 / this.box.numOfColumns;
+        return (100 / this.box.numOfColumns) - this.cBoxGap;
     }
   },
   methods: {
